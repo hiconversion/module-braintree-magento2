@@ -172,40 +172,45 @@
                             <config_path>hiconversion/configuration/site_id</config_path>
                         </field>
                         
-                        <group id="create_account" translate="label" showInDefault="1" showInWebsite="1" sortOrder="26">
+                        <group id="create_account" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="26">
                             <label>Activate New HiConversion Account</label>
                             <field id="site_url" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
                                 <label>Your Site URL</label>
                                 <frontend_class>validate-url</frontend_class>
-                                <config_path>hiconversion/configuration/site_url</config_path>
+                                <backend_model>Magento\Braintree\Model\Adminhtml\System\Config\NonStorable</backend_model>
                             </field>
                             <field id="email" translate="label" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
                                 <label>Your Email Address</label>
                                 <frontend_class>validate-email</frontend_class>
-                                <config_path>hiconversion/configuration/email</config_path>
+                                <backend_model>Magento\Braintree\Model\Adminhtml\System\Config\NonStorable</backend_model>
                             </field>
                             <field id="password" translate="label" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
                                 <label>Password</label>
-                                <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
-                                <config_path>hiconversion/configuration/password</config_path>
+                                <backend_model>Magento\Braintree\Model\Adminhtml\System\Config\NonStorable</backend_model>
                             </field>
                             <field id="activate" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
                                 <label></label>
                                 <frontend_model>Magento\Braintree\Block\Adminhtml\Form\Field\HicActivation</frontend_model>
                             </field>
                         </group>
-                        <group id="link_existing" translate="label" showInDefault="1" showInWebsite="1" sortOrder="26">
-                            <label>Link to an Existing HiConversion Account</label>
+                        <group id="link_existing" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="26">
+                            <label>Link to an Existing Site In HiConversion</label>
                             <field id="site_url" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
-                                <label>Your Site URL</label>
+                                <label>Existing Site URL</label>
                                 <frontend_class>validate-url</frontend_class>
+                                <backend_model>Magento\Braintree\Model\Adminhtml\System\Config\NonStorable</backend_model>
                             </field>
                             <field id="email" translate="label" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
                                 <label>Your Email Address</label>
                                 <frontend_class>validate-email</frontend_class>
+                                <backend_model>Magento\Braintree\Model\Adminhtml\System\Config\NonStorable</backend_model>
+                            </field>
+                            <field id="link" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                                <label></label>
+                                <frontend_model>Magento\Braintree\Block\Adminhtml\Form\Field\HicLink</frontend_model>
                             </field>
                         </group>
-                        <group id="advanced" translate="label" showInDefault="1" showInWebsite="1" sortOrder="26">
+                        <group id="advanced" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="26">
                             <label>Advanced Settings</label>
                             <field id="bn_code" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
                                 <label>Build Notation Code</label>
