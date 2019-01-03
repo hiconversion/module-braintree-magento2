@@ -13,8 +13,6 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
  */
 class ActivateHiconversion extends \Magento\Backend\App\Action
 {
-    
-    private $logger;
 
     /**
      * @var \Magento\Framework\App\Config\Storage\WriterInterface;
@@ -36,14 +34,11 @@ class ActivateHiconversion extends \Magento\Backend\App\Action
     public function __construct(
         Action\Context $context,
         WriterInterface $configWriter,
-        HicApi $hicApi,
-        \Psr\Log\LoggerInterface $logger
+        HicApi $hicApi
     ) {
         parent::__construct($context);
         $this->configWriter = $configWriter;
         $this->hicApi = $hicApi;
-
-        $this->logger = $logger;
     }
 
     /**
@@ -60,8 +55,6 @@ class ActivateHiconversion extends \Magento\Backend\App\Action
         $response = $this->resultFactory->create(ResultFactory::TYPE_JSON);
         try {
             $result = $this->hicApi->activateHicAccount($siteUrl, $email, $pw, $storeId);
-
-            $this->logger->debug("HIC SIGNUP RESULTS:" . print_r($result, true));
             
             if (isset($result) && isset($result['result']) == "success") {
                 $siteId = $this->hicApi->getHicSiteId($siteUrl, $email);

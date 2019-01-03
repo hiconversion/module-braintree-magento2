@@ -13,9 +13,6 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
  */
 class LinkHiconversion extends \Magento\Backend\App\Action
 {
-    private $logger;
-
-
     /**
      * @var \Magento\Framework\App\Config\Storage\WriterInterface;
      */
@@ -35,14 +32,11 @@ class LinkHiconversion extends \Magento\Backend\App\Action
     public function __construct(
         Action\Context $context,
         WriterInterface $configWriter,
-        HicApi $hicApi,
-        \Psr\Log\LoggerInterface $logger
+        HicApi $hicApi
     ) {
         parent::__construct($context);
         $this->configWriter = $configWriter;
         $this->hicApi = $hicApi;
-
-        $this->logger = $logger;
     }
 
     /**
@@ -74,7 +68,6 @@ class LinkHiconversion extends \Magento\Backend\App\Action
                 $response->setHttpResponseCode(404);
             }
         } catch (\Exception $e) {
-            $this->logger->error($e);
             $response->setHttpResponseCode(400);
         }
 

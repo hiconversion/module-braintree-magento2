@@ -9,7 +9,7 @@ use Magento\Framework\HTTP\Client\Curl;
  */
 class HicApi
 {
-
+    // const BASE_URL = "https://h30.hiconversion.net/api/extensions";
     const BASE_URL = "http://h30-local.hiconversion.net:9000/api/extensions/";
     const CREATE_ACCOUNT_URL = self::BASE_URL . "signup";
     const GET_SITES_URL = self::BASE_URL . "user/sites";
@@ -25,12 +25,9 @@ class HicApi
      * @param Curl $curl
      */
     public function __construct(
-        Curl $curl,
-        \Psr\Log\LoggerInterface $logger
+        Curl $curl
     ) {
         $this->curl = $curl;
-
-        $this->logger = $logger;
     }
 
     private function setDefaultCurlOpts()
@@ -67,8 +64,6 @@ class HicApi
             'leadSource' => 'Braintree-Magento'
         
         ]));
-        
-        $this->logger->debug("HIC CURL BODY:" . $this->curl->getBody());
 
         return json_decode($this->curl->getBody(), true);
     }
@@ -88,7 +83,6 @@ class HicApi
         ]));
         
         $sites = json_decode($this->curl->getBody(), true);
-        $this->logger->debug("HIC SITES: " . print_r($sites, true));
 
         $siteId = null;
         if (is_array($sites)) {
