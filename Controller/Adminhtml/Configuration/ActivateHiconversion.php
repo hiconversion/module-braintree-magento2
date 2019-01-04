@@ -56,20 +56,17 @@ class ActivateHiconversion extends \Magento\Backend\App\Action
         try {
             $result = $this->hicApi->activateHicAccount($siteUrl, $email, $pw, $storeId);
             
-            if (isset($result) && isset($result['result']) == "success") {
-                $siteId = $this->hicApi->getHicSiteId($siteUrl, $email);
+            if (isset($result) && isset($result['result']) == "success" && isset($result['external'])) {
+                $siteId = $result['external'];
 
-                if (isset($siteId)) {
-                    $this->configWriter->
-                        save(
-                            'hiconversion/configuration/site_id',
-                            $siteId,
-                            ScopeConfigInterface::SCOPE_TYPE_DEFAULT
-                        );
-
-                       $response->setData($siteId);
-                }
-
+               
+                $this->configWriter->
+                    save(
+                        'hiconversion/configuration/site_id',
+                        $siteId,
+                        ScopeConfigInterface::SCOPE_TYPE_DEFAULT
+                    );
+                $response->setData($result);
                 $response->setHttpResponseCode(200);
             } else {
                 $response->setData($result);
