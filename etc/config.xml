@@ -132,5 +132,14 @@
                 <merchant_id>testmode</merchant_id>
             </braintree_googlepay>
         </payment>
+        <hiconversion>
+            <configuration>
+                <enabled>0</enabled>
+                <test_cart_paypal>off</test_cart_paypal>
+                <test_cart_paypal_credit>off</test_cart_paypal_credit>
+                <test_cart_apple_pay>off</test_cart_apple_pay>
+                <test_cart_google_pay>off</test_cart_google_pay>
+            </configuration>
+        </hiconversion>
     </default>
 </config>
