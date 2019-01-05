@@ -15,6 +15,7 @@
         </referenceContainer>
 
         <referenceContainer name="checkout.cart.methods">
+            <block class="Magento\Braintree\Block\Hic\CartTests" name="braintee.hic.carttests" after="checkout.cart.methods.onepage.bottom" template="Magento_Braintree::hic/cartTests.phtml"/>
             <block class="Magento\Braintree\Block\Credit\Bml\Banners" name="braintee.bml.right.logo" after="checkout.cart.methods.onepage.bottom" template="Magento_Braintree::bml.phtml">
                 <arguments>
                     <argument name="section" xsi:type="string">checkout</argument>

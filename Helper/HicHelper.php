@@ -31,20 +31,12 @@ use Magento\Store\Model\ScopeInterface;
  */
 class HicHelper extends AbstractHelper
 {
-    /**
-     * enabled id in configuration
-     */
-    const SETTINGS_ENABLED = 'hiconversion/configuration/enabled';
 
-    /**
-     * site ID in configuration
-     */
-    const SETTINGS_SITE_ID = 'hiconversion/configuration/site_id';
-
-    /**
-     * bn code in configuration
-     */
-    const SETTINGS_BN_CODE = 'hiconversion/configuration/bn_code';
+    const CONFIG_BASE = 'hiconversion/configuration/';
+    const KEY_ENABLED = 'enabled';
+    const KEY_SITE_ID = 'site_id';
+    const KEY_BN_CODE = 'bn_code';
+    const KEY_TEST_CART_PAYPAL_EXPRESS = 'test_cart_paypal';
 
     /**
      * @var Data
@@ -70,6 +62,19 @@ class HicHelper extends AbstractHelper
         $this->productMetadata = $productMetadata;
         parent::__construct($context);
     }
+
+    /**
+     * @param $field
+     * @return mixed
+     */
+    public function getConfigValue($field)
+    {
+        return $this->scopeConfig->getValue(
+            self::CONFIG_BASE . $field,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
   
     /**
      * Returns Site ID from Configuration
@@ -78,7 +83,7 @@ class HicHelper extends AbstractHelper
      */
     public function getSiteId()
     {
-        return $this->scopeConfig->getValue(self::SETTINGS_SITE_ID, ScopeInterface::SCOPE_STORE);
+        return $this->getConfigValue(self::KEY_SITE_ID);
     }
 
     /**
@@ -88,8 +93,29 @@ class HicHelper extends AbstractHelper
      */
     public function getBNCode()
     {
-        return $this->scopeConfig->getValue(self::SETTINGS_BN_CODE, ScopeInterface::SCOPE_STORE);
+        return $this->getConfigValue(self::KEY_BN_CODE);
     }
+
+    /**
+     * Determines if module is enabled or not
+     *
+     * @return boolean
+     */
+    public function isEnabled()
+    {
+        return $this->getConfigValue(self::KEY_ENABLED);
+    }
+
+    /**
+     * cart paypal express test state
+     *
+     * @return string
+     */
+    public function getTestCartPaypalExpressState()
+    {
+        return $this->getConfigValue(self::KEY_TEST_CART_PAYPAL_EXPRESS);
+    }
+
 
     /**
      * Returns Url with Site ID from Configuration included
@@ -101,15 +127,6 @@ class HicHelper extends AbstractHelper
         return '//h30-deploy.hiconversion.com/origin/tag/' . $this->getSiteId();
     }
 
-    /**
-     * Determines if module is enabled or not
-     *
-     * @return boolean
-     */
-    public function isEnabled()
-    {
-        return $this->scopeConfig->getValue(self::SETTINGS_ENABLED, ScopeInterface::SCOPE_STORE);
-    }
 
     /**
      * Returns Magento Version

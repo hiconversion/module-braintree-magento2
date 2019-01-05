@@ -1,0 +1,17 @@
+<?php
+/**
+ * @var \Magento\Braintree\Block\Hic\CartTests $block
+ */
+
+ $config = [
+    'testCartPaypalExpressState' => $block->getTestCartPaypalExpressState()
+];
+
+?>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Braintree/js/hic/cart-tests": <?php /* @noEscape */ echo json_encode($config); ?>
+    }
+}
+</script>
