@@ -211,24 +211,37 @@
                             </field>
                         </group>
                         <group id="tests" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="26">
+                             <comment><![CDATA[<a href="https://h30.hiconversion.net/cx/t/ab/dash" target="_blank">Create/Manage Tests in HiConversion</a>]]></comment>
                             <label>Tests</label>
                             <field id="cart_paypal_express" translate="label" type="radios" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="1">
                                 <label>Cart Paypal Express</label>
+                                <depends>
+                                    <field id="*/braintree_section/braintree/active_braintree_paypal">1</field>
+                                </depends>
                                 <source_model>Magento\Braintree\Model\Adminhtml\Source\HicTest</source_model>
                                 <config_path>hiconversion/configuration/test_cart_paypal</config_path>
                             </field>
                             <field id="cart_paypal_credit" translate="label" type="radios" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="1">
                                 <label>Cart Paypal Credit</label>
+                                <depends>
+                                    <field id="*/braintree_section/braintree/braintree_paypal_credit_active">1</field>
+                                </depends>
                                 <source_model>Magento\Braintree\Model\Adminhtml\Source\HicTest</source_model>
                                 <config_path>hiconversion/configuration/test_cart_paypal_credit</config_path>
                             </field>
                             <field id="cart_apple_pay" translate="label" type="radios" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="1">
                                 <label>Cart Apple Pay</label>
+                                <depends>
+                                    <field id="*/braintree_section/braintree/braintree_applepay/active">1</field>
+                                </depends>
                                 <source_model>Magento\Braintree\Model\Adminhtml\Source\HicTest</source_model>
                                 <config_path>hiconversion/configuration/test_cart_apple_pay</config_path>
                             </field>
                             <field id="cart_google_pay" translate="label" type="radios" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="1">
                                 <label>Cart Google Pay</label>
+                                <depends>
+                                    <field id="*/braintree_section/braintree/braintree_googlepay/active">1</field>
+                                </depends>
                                 <source_model>Magento\Braintree\Model\Adminhtml\Source\HicTest</source_model>
                                 <config_path>hiconversion/configuration/test_cart_google_pay</config_path>
                             </field>

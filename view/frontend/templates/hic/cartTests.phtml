@@ -4,7 +4,10 @@
  */
 
  $config = [
-    'testCartPaypalExpressState' => $block->getTestCartPaypalExpressState()
+     'paypalExpressState' => $block->getPaypalExpressState(),
+     'paypalCreditState' => $block->getPaypalCreditState(),
+     'applePayState' => $block->getApplePayState(),
+     'googlePayState' => $block->getGooglePayState()
 ];
 
 ?>

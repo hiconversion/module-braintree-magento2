@@ -41,7 +41,7 @@ $configCredit['Magento_Braintree/js/paypal/button']['offerCredit'] = true;
 
 <?php if ($block->isCreditActive()) : ?>
     <div data-mage-init='<?php /* @noEscape */ echo json_encode($configCredit); ?>'
-         class="paypal checkout paypal-logo braintree-paypal-logo<?php
+         class="paypal paypal-bml checkout paypal-logo braintree-paypal-logo<?php
          /* @noEscape */ echo $block->getContainerId(); ?>-container">
         <div data-currency="<?php /* @noEscape */ echo $block->getCurrency(); ?>"
              data-locale="<?php /* @noEscape */ echo $block->getLocale(); ?>"

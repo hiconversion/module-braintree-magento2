@@ -33,8 +33,23 @@ class CartTests extends Template
         parent::__construct($context, $data);
     }
 
-    public function getTestCartPaypalExpressState()
+    public function getPaypalExpressState()
     {
         return $this->helper->getTestCartPaypalExpressState();
+    }
+
+    public function getPaypalCreditState()
+    {
+        return $this->helper->getTestCartPaypalCreditState();
+    }
+
+    public function getApplePayState()
+    {
+        return $this->helper->getTestCartApplePayState();
+    }
+
+    public function getGooglePayState()
+    {
+        return $this->helper->getTestCartGooglePayState();
     }
 }

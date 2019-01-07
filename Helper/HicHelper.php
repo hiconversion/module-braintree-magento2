@@ -37,6 +37,9 @@ class HicHelper extends AbstractHelper
     const KEY_SITE_ID = 'site_id';
     const KEY_BN_CODE = 'bn_code';
     const KEY_TEST_CART_PAYPAL_EXPRESS = 'test_cart_paypal';
+    const KEY_TEST_CART_PAYPAL_CREDIT = 'test_cart_paypal_credit';
+    const KEY_TEST_CART_APPLE_PAY = 'test_cart_apple_pay';
+    const KEY_TEST_CART_GOOGLE_PAY = 'test_cart_google_pay';
 
     /**
      * @var Data
@@ -114,6 +117,36 @@ class HicHelper extends AbstractHelper
     public function getTestCartPaypalExpressState()
     {
         return $this->getConfigValue(self::KEY_TEST_CART_PAYPAL_EXPRESS);
+    }
+
+     /**
+     * cart paypal credit test state
+     *
+     * @return string
+     */
+    public function getTestCartPaypalCreditState()
+    {
+        return $this->getConfigValue(self::KEY_TEST_CART_PAYPAL_CREDIT);
+    }
+
+     /**
+     * cart applePay test state
+     *
+     * @return string
+     */
+    public function getTestCartApplePayState()
+    {
+        return $this->getConfigValue(self::KEY_TEST_CART_APPLE_PAY);
+    }
+
+     /**
+     * cart googlePay test state
+     *
+     * @return string
+     */
+    public function getTestCartGooglePayState()
+    {
+        return $this->getConfigValue(self::KEY_TEST_CART_GOOGLE_PAY);
     }
 
 
