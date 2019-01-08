@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Magento\Braintree\Model\Adminhtml\System\Config;
 
