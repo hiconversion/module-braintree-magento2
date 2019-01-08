@@ -40,6 +40,10 @@ class HicHelper extends AbstractHelper
     const KEY_TEST_CART_PAYPAL_CREDIT = 'test_cart_paypal_credit';
     const KEY_TEST_CART_APPLE_PAY = 'test_cart_apple_pay';
     const KEY_TEST_CART_GOOGLE_PAY = 'test_cart_google_pay';
+    const KEY_TEST_MINICART_PAYPAL_EXPRESS = 'test_minicart_paypal';
+    const KEY_TEST_MINICART_PAYPAL_CREDIT = 'test_minicart_paypal_credit';
+    const KEY_TEST_MINICART_APPLE_PAY = 'test_minicart_apple_pay';
+    const KEY_TEST_MINICART_GOOGLE_PAY = 'test_minicart_google_pay';
 
     /**
      * @var Data
@@ -147,6 +151,45 @@ class HicHelper extends AbstractHelper
     public function getTestCartGooglePayState()
     {
         return $this->getConfigValue(self::KEY_TEST_CART_GOOGLE_PAY);
+    }
+
+      /**
+     * minicart paypal express test state
+     *
+     * @return string
+     */
+    public function getTestMiniCartPaypalExpressState()
+    {
+        return $this->getConfigValue(self::KEY_TEST_MINICART_PAYPAL_EXPRESS);
+    }
+
+     /**
+     * minicart paypal credit test state
+     *
+     * @return string
+     */
+    public function getTestMiniCartPaypalCreditState()
+    {
+        return $this->getConfigValue(self::KEY_TEST_MINICART_PAYPAL_CREDIT);
+    }
+
+     /**
+     * minicart applePay test state
+     *
+     * @return string
+     */
+    public function getTestMiniCartApplePayState()
+    {
+        return $this->getConfigValue(self::KEY_TEST_MINICART_APPLE_PAY);
+    }
+
+     /**
+     * minicart googlePay test state
+     * @return string
+     */
+    public function getTestMiniCartGooglePayState()
+    {
+        return $this->getConfigValue(self::KEY_TEST_MINICART_GOOGLE_PAY);
     }
 
 
