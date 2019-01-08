@@ -4,6 +4,7 @@
  */
 define([
     'jquery',
+    'Magento_Braintree/js/hic/test-core'
 ], function ($, testCore) {
     'use strict';
 
