@@ -34,17 +34,18 @@ class HicHelper extends AbstractHelper
 
     const CONFIG_BASE = 'hiconversion/configuration/';
     const KEY_ENABLED = 'enabled';
+    const KEY_DISABLED = 'disabled';
+    const KEY_TEST_ENABLED = 'test_enabled';
     const KEY_SITE_ID = 'site_id';
     const KEY_BN_CODE = 'bn_code';
-    const KEY_TEST_CART_PAYPAL_EXPRESS = 'test_cart_paypal';
-    const KEY_TEST_CART_PAYPAL_CREDIT = 'test_cart_paypal_credit';
-    const KEY_TEST_CART_APPLE_PAY = 'test_cart_apple_pay';
-    const KEY_TEST_CART_GOOGLE_PAY = 'test_cart_google_pay';
-    const KEY_TEST_MINICART_PAYPAL_EXPRESS = 'test_minicart_paypal';
-    const KEY_TEST_MINICART_PAYPAL_CREDIT = 'test_minicart_paypal_credit';
-    const KEY_TEST_MINICART_APPLE_PAY = 'test_minicart_apple_pay';
-    const KEY_TEST_MINICART_GOOGLE_PAY = 'test_minicart_google_pay';
+    const KEY_LOCATION_CART = 'cart';
+    const KEY_LOCATION_MINICART = 'minicart';
 
+    const KEY_PAYPAL = 'paypal';
+    const KEY_PAYPAL_CREDIT = 'paypal_credit';
+    const KEY_APPLE_PAY = 'apple_pay';
+    const KEY_GOOGLE_PAY = 'google_pay';
+    
     /**
      * @var Data
      */
@@ -112,86 +113,185 @@ class HicHelper extends AbstractHelper
     {
         return $this->getConfigValue(self::KEY_ENABLED);
     }
+    
+    /**
+     * @param string $location
+     * @param string $name
+     * @return boolean
+     */
+    public function isTestEnabled($location, $name)
+    {
+        return (bool) $this->getConfigValue($location . '_' . $name . '_' . self::KEY_TEST_ENABLED);
+    }
 
     /**
-     * cart paypal express test state
+     * @param string $location
+     * @param string $name
+     * @return boolean
+     */
+    public function isButtonDisabled($location, $name)
+    {
+        return (bool) $this->getConfigValue($location . '_' . $name . '_' . self::KEY_DISABLED);
+    }
+
+    /**
+     * is paypal express test enabled for cart
      *
-     * @return string
+     * @return boolean
      */
-    public function getTestCartPaypalExpressState()
+    public function isCartPaypalExpressTestEnabled()
     {
-        return $this->getConfigValue(self::KEY_TEST_CART_PAYPAL_EXPRESS);
+        return $this->isTestEnabled(self::KEY_LOCATION_CART, self::KEY_PAYPAL);
     }
 
-     /**
-     * cart paypal credit test state
+    /**
+     * is paypal express disabled for cart
      *
-     * @return string
+     * @return boolean
      */
-    public function getTestCartPaypalCreditState()
+    public function isCartPaypalExpressDisabled()
     {
-        return $this->getConfigValue(self::KEY_TEST_CART_PAYPAL_CREDIT);
+        return $this->isButtonDisabled(self::KEY_LOCATION_CART, self::KEY_PAYPAL);
     }
 
-     /**
-     * cart applePay test state
+    /**
+     * is paypal credit test enabled for cart
      *
-     * @return string
+     * @return boolean
      */
-    public function getTestCartApplePayState()
+    public function isCartPaypalCreditTestEnabled()
     {
-        return $this->getConfigValue(self::KEY_TEST_CART_APPLE_PAY);
+        return $this->isTestEnabled(self::KEY_LOCATION_CART, self::KEY_PAYPAL_CREDIT);
     }
 
-     /**
-     * cart googlePay test state
+    /**
+     * is paypal credit disabled for cart
      *
-     * @return string
+     * @return boolean
      */
-    public function getTestCartGooglePayState()
+    public function isCartPaypalCreditDisabled()
     {
-        return $this->getConfigValue(self::KEY_TEST_CART_GOOGLE_PAY);
+        return $this->isButtonDisabled(self::KEY_LOCATION_CART, self::KEY_PAYPAL_CREDIT);
     }
 
-      /**
-     * minicart paypal express test state
+    /**
+     * is applePay test enabled for cart
      *
-     * @return string
+     * @return boolean
      */
-    public function getTestMiniCartPaypalExpressState()
+    public function isCartApplePayTestEnabled()
     {
-        return $this->getConfigValue(self::KEY_TEST_MINICART_PAYPAL_EXPRESS);
+        return $this->isTestEnabled(self::KEY_LOCATION_CART, self::KEY_APPLE_PAY);
     }
 
-     /**
-     * minicart paypal credit test state
+    /**
+     * is apple pay disabled for cart
      *
-     * @return string
+     * @return boolean
      */
-    public function getTestMiniCartPaypalCreditState()
+    public function isCartApplePayDisabled()
     {
-        return $this->getConfigValue(self::KEY_TEST_MINICART_PAYPAL_CREDIT);
+        return $this->isButtonDisabled(self::KEY_LOCATION_CART, self::KEY_APPLE_PAY);
     }
 
-     /**
-     * minicart applePay test state
+    /**
+     * is googlePay test enabled for cart
      *
-     * @return string
+     * @return boolean
      */
-    public function getTestMiniCartApplePayState()
+    public function isCartGooglePayTestEnabled()
     {
-        return $this->getConfigValue(self::KEY_TEST_MINICART_APPLE_PAY);
+        return $this->isTestEnabled(self::KEY_LOCATION_CART, self::KEY_GOOGLE_PAY);
     }
 
-     /**
-     * minicart googlePay test state
-     * @return string
+    /**
+     * is google pay disabled for cart
+     *
+     * @return boolean
      */
-    public function getTestMiniCartGooglePayState()
+    public function isCartGooglePayDisabled()
     {
-        return $this->getConfigValue(self::KEY_TEST_MINICART_GOOGLE_PAY);
+        return $this->isButtonDisabled(self::KEY_LOCATION_CART, self::KEY_GOOGLE_PAY);
     }
 
+    /**
+     * is paypal express test enabled for minicart
+     *
+     * @return boolean
+     */
+    public function isMiniCartPaypalExpressTestEnabled()
+    {
+        return $this->isTestEnabled(self::KEY_LOCATION_MINICART, self::KEY_PAYPAL);
+    }
+
+    /**
+     * is paypal express disabled for minicart
+     *
+     * @return boolean
+     */
+    public function isMiniCartPaypalExpressDisabled()
+    {
+        return $this->isButtonDisabled(self::KEY_LOCATION_MINICART, self::KEY_PAYPAL);
+    }
+
+    /**
+     * is paypal credit test enabled for minicart
+     *
+     * @return boolean
+     */
+    public function isMiniCartPaypalCreditTestEnabled()
+    {
+        return $this->isTestEnabled(self::KEY_LOCATION_MINICART, self::KEY_PAYPAL_CREDIT);
+    }
+
+    /**
+     * is paypal credit disabled for minicart
+     *
+     * @return boolean
+     */
+    public function isMiniCartPaypalCreditDisabled()
+    {
+        return $this->isButtonDisabled(self::KEY_LOCATION_MINICART, self::KEY_PAYPAL_CREDIT);
+    }
+
+    /**
+     * is applePay test enabled for minicart
+     *
+     * @return boolean
+     */
+    public function isMiniCartApplePayTestEnabled()
+    {
+        return $this->isTestEnabled(self::KEY_LOCATION_MINICART, self::KEY_APPLE_PAY);
+    }
+
+    /**
+     * is apple pay disabled for minicart
+     *
+     * @return boolean
+     */
+    public function isMiniCartApplePayDisabled()
+    {
+        return $this->isButtonDisabled(self::KEY_LOCATION_MINICART, self::KEY_APPLE_PAY);
+    }
+
+    /**
+     * is googlePay test enabled for minicart
+     * @return boolean
+     */
+    public function isMiniCartGooglePayTestEnabled()
+    {
+        return $this->isTestEnabled(self::KEY_LOCATION_MINICART, self::KEY_GOOGLE_PAY);
+    }
+
+    /**
+     * is google pay disabled for minicart
+     *
+     * @return boolean
+     */
+    public function isMiniCartGooglePayDisabled()
+    {
+        return $this->isButtonDisabled(self::KEY_LOCATION_MINICART, self::KEY_GOOGLE_PAY);
+    }
 
     /**
      * Returns Url with Site ID from Configuration included
