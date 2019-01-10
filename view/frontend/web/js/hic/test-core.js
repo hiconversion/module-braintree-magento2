@@ -8,28 +8,54 @@ define([
     'use strict';
 
     return {
-        applyCss: function (text) {
-            var styleSheet = document.createElement('style');
-            document.getElementsByTagName('head')[0].appendChild(styleSheet);
-            if (styleSheet.styleSheet) {
-                // ie case
-                styleSheet.styleSheet.cssText = text;
-            } else {
-                styleSheet.appendChild(document.createTextNode(text));
+
+        paymentMethod: function(args){            
+            var style = false;
+            var obj = {
+                config: args.config,
+                eligible: args.eligible,
+                selector: args.selector,
+                show: show_payment,
+                hide: hide_payment,
+                init: init_payment
             }
-            return $(styleSheet);
+            function show_payment(){
+                (style !== false) ? style.remove() : null;
+                return obj
+            }
+            function hide_payment(){
+                var text = args.selector + '{display:none;}'
+                var styleSheet = document.createElement('style');
+                document.getElementsByTagName('head')[0].appendChild(styleSheet);
+                if (styleSheet.styleSheet) {
+                    // ie case
+                    styleSheet.styleSheet.cssText = text;
+                } else {
+                    styleSheet.appendChild(document.createTextNode(text));
+                }
+                style = $(styleSheet);   
+                return obj
+            }
+            function init_payment(){
+                if (obj.config.testEnabled === true){
+                    return hide_payment();
+                }else if (obj.config.testEnabled === false && obj.config.disabled === true){
+                    return hide_payment();
+                }else if (obj.config.testEnabled === false && obj.config.disabled === false){
+                    return show_payment();
+                }else {
+                    return obj;
+                }
+                return obj
+            }
+            return obj
         },
 
-        addToApi: function (testLocation, testName, fn) {
+        addToApi: function (testLocation, testName, obj) {
             window.braintreeHicApi = window.braintreeHicApi || {};
             window.braintreeHicApi[testLocation] = window.braintreeHicApi[testLocation] || {};
-            window.braintreeHicApi[testLocation][testName] = fn;
+            window.braintreeHicApi[testLocation][testName] = obj;
         },
-
-        createRemoveFn: function (style) {
-            return function () {
-                style.remove();
-            }
-        }
+        
     }
 });

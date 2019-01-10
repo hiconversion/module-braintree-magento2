@@ -11,25 +11,34 @@ define([
     return function (config) {
 
         if (config) {
-            if (config.paypalExpressState === 'test') {
-                var style = testCore.applyCss('#minicart-content-wrapper .paypal.checkout:not(.paypal-bml) {display:none;}');
-                testCore.addToApi('minicart', 'paypal', testCore.createRemoveFn(style));
-            }
 
-            if (config.paypalCreditState === 'test') {
-                var style = testCore.applyCss('#minicart-content-wrapper .paypal-bml.checkout {display:none;}');
-                testCore.addToApi('minicart', 'paypalCredit', testCore.createRemoveFn(style));
-            }
+            //testCore.addToApi('config','minicart_payment_methods', config);
+            window.minicart_config = config;
 
-            if (config.applePayState === 'test') {
-                var style = testCore.applyCss('#minicart-content-wrapper .applepay-minicart {display:none;}');
-                testCore.addToApi('minicart', 'applePay', testCore.createRemoveFn(style));
-            }
+            testCore.addToApi('minicart', 'paypal', testCore.paymentMethod({
+                config: config.paypalExpress,
+                eligible: "",
+                selector: "#minicart-content-wrapper .paypal.checkout:not(.paypal-bml)",
+            }).init());
 
-            if (config.googlePayState === 'test') {
-                var style = testCore.applyCss('#minicart-content-wrapper .googlepay-minicart-logo {display:none;}');
-                testCore.addToApi('minicart', 'googlePay', testCore.createRemoveFn(style));
-            }
+            testCore.addToApi('minicart','paypalCredit', testCore.paymentMethod({
+                config: config.paypalCredit,
+                eligible: "",
+                selector: "#minicart-content-wrapper .paypal-bml.checkout",
+            }).init());
+
+            testCore.addToApi('minicart','applePay', testCore.paymentMethod({
+                config: config.applePay,
+                eligible: "",
+                selector: "#minicart-content-wrapper .applepay-minicart",
+            }).init());
+
+            testCore.addToApi('minicart','googlePay', testCore.paymentMethod({
+                config: config.googlePay,
+                eligible: "",  
+                selector: "#minicart-content-wrapper .googlepay-minicart-logo",
+            }).init());
+
         }
     };
 });
