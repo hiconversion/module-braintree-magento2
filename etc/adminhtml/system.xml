@@ -323,6 +323,25 @@
                                     </field>
                                 </group>
                             </group>
+                            <group id="sitewide" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="26">
+                                <label>Sitewide</label>
+                                <group id="paypal_button_shape" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="26">
+                                   <label>PayPal Button Shape</label>
+                                    <field id="test_mode" translate="label" type="select" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="1">
+                                        <label>Enable Test Mode</label>
+                                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                                        <config_path>hiconversion/configuration/sitewide_paypal_button_shape_test_enabled</config_path>
+                                    </field>
+                                </group>
+                                <group id="paypal_button_color" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="26">
+                                   <label>PayPal Button Color</label>
+                                    <field id="test_mode" translate="label" type="select" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="1">
+                                        <label>Enable Test Mode</label>
+                                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                                        <config_path>hiconversion/configuration/sitewide_paypal_button_color_test_enabled</config_path>
+                                    </field>
+                                </group>
+                            </group>
                         </group>
                         <group id="advanced" translate="label" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="26">
                             <label>Advanced Settings</label>

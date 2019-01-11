@@ -31,7 +31,6 @@ use Magento\Store\Model\ScopeInterface;
  */
 class HicHelper extends AbstractHelper
 {
-
     const CONFIG_BASE = 'hiconversion/configuration/';
     const KEY_ENABLED = 'enabled';
     const KEY_DISABLED = 'disabled';
@@ -40,7 +39,11 @@ class HicHelper extends AbstractHelper
     const KEY_BN_CODE = 'bn_code';
     const KEY_LOCATION_CART = 'cart';
     const KEY_LOCATION_MINICART = 'minicart';
+    const KEY_LOCATION_SITEWIDE = 'sitewide';
 
+    const KEY_PAYPAL_BUTTON_COLOR = 'paypal_button_color';
+    const KEY_PAYPAL_BUTTON_SHAPE = 'paypal_button_shape';
+    
     const KEY_PAYPAL = 'paypal';
     const KEY_PAYPAL_CREDIT = 'paypal_credit';
     const KEY_APPLE_PAY = 'apple_pay';
@@ -291,6 +294,24 @@ class HicHelper extends AbstractHelper
     public function isMiniCartGooglePayDisabled()
     {
         return $this->isButtonDisabled(self::KEY_LOCATION_MINICART, self::KEY_GOOGLE_PAY);
+    }
+
+    /**
+     * is paypal button shape test enabled
+     * @return boolean
+     */
+    public function isPaypalButtonShapeTestEnabled()
+    {
+        return $this->isTestEnabled(self::KEY_LOCATION_SITEWIDE, self::KEY_PAYPAL_BUTTON_SHAPE);
+    }
+
+    /**
+     * is paypal button color test enabled
+     * @return boolean
+     */
+    public function isPaypalButtonColorTestEnabled()
+    {
+        return $this->isTestEnabled(self::KEY_LOCATION_SITEWIDE, self::KEY_PAYPAL_BUTTON_COLOR);
     }
 
     /**

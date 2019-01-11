@@ -34,6 +34,14 @@ class MiniCartTestData extends Template
     }
 
     /**
+     * @return HicHelper
+     */
+    public function getHelper()
+    {
+        return $this->helper;
+    }
+
+    /**
      * is paypal express test enabled
      *
      * @return boolean
@@ -111,5 +119,25 @@ class MiniCartTestData extends Template
     public function isGooglePayDisabled()
     {
         return $this->helper->isMiniCartGooglePayDisabled();
+    }
+
+    /**
+     * is paypal button color test enabled
+     *
+     * @return boolean
+     */
+    public function isPaypalButtonColorTestEnabled()
+    {
+        return $this->helper->isPaypalButtonColorTestEnabled();
+    }
+
+    /**
+     * is paypal button shape test enabled
+     *
+     * @return boolean
+     */
+    public function isPaypalButtonShapeTestEnabled()
+    {
+        return $this->helper->isPaypalButtonShapeTestEnabled();
     }
 }

@@ -112,4 +112,24 @@ class CartTestData extends Template
     {
         return $this->helper->isCartGooglePayDisabled();
     }
+
+    /**
+     * is paypal button color test enabled
+     *
+     * @return boolean
+     */
+    public function isPaypalButtonColorTestEnabled()
+    {
+        return $this->helper->isPaypalButtonColorTestEnabled();
+    }
+
+    /**
+     * is paypal button shape test enabled
+     *
+     * @return boolean
+     */
+    public function isPaypalButtonShapeTestEnabled()
+    {
+        return $this->helper->isPaypalButtonShapeTestEnabled();
+    }
 }

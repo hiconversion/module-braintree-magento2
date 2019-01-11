@@ -3,15 +3,20 @@
  * @var \Magento\Braintree\Block\Hic\CartTestData $block
  */
 
+ $styleConfig = [
+    'buttonColorTestEnabled' => $block->isPaypalButtonColorTestEnabled(),
+    'buttonShapeTestEnabled' => $block->isPaypalButtonShapeTestEnabled()
+ ];
+
  $config = [
-     'paypalExpress' => [
-       'testEnabled' => $block->isPaypalExpressTestEnabled(),
-       'disabled' => $block->isPaypalExpressDisabled()
-     ],
-     'paypalCredit' => [
+     'paypalExpress' => array_merge([
+        'testEnabled' => $block->isPaypalExpressTestEnabled(),
+        'disabled' => $block->isPaypalExpressDisabled()
+     ], $styleConfig),
+     'paypalCredit' => array_merge([
         'testEnabled' => $block->isPaypalCreditTestEnabled(),
         'disabled' => $block->isPaypalCreditDisabled()
-     ],
+     ], $styleConfig),
      'applePay' => [
         'testEnabled' => $block->isApplePayTestEnabled(),
         'disabled' => $block->isApplePayDisabled()
@@ -20,9 +25,9 @@
         'testEnabled' => $block->isGooglePayTestEnabled(),
         'disabled' => $block->isGooglePayDisabled()
      ]
-];
+ ];
 
-?>
+    ?>
 <script type="text/x-magento-init">
 {
     "*": {
